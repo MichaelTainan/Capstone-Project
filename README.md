@@ -73,7 +73,7 @@ Access the data follows the follow steps:
         - league_standings
 
 We can see the below picture to check these relationship of the tables.        
-![alt text](ERD.png "ER Diagram")
+![alt text](picture/ERD.png "ER Diagram")
 
 #### 3.2 Mapping Out Data Pipelines
 List the steps necessary to pipeline the data into the chosen data model
@@ -87,7 +87,7 @@ List the steps necessary to pipeline the data into the chosen data model
 #### 4.1 Create the data model
 Build the data pipelines to create the data model.
 We can see the below picture to show the ETL task dependency.
-![alt text](airflow_pipeline.png "Graph View")
+![alt text](picture/airflow_pipeline.png "Graph View")
 
 #### 4.2 Data Quality Checks
 I had check the Dimension table and Fact table in airflow class DataQualityOperator(). It's file name is data_quality.py.As follows:
@@ -100,7 +100,33 @@ https://dbdocs.io/michaeltainan/Capstone-Project
 
 ### Step 5: Complete Project Write Up
 #### 5.1 Data analysis results
-We can find the QueryProjectDataResult.ipynb file I run the query sql in root to analyze the football game information to check result. First I check the every tables row count if all of them have more than 1 million lines of data, then I query my favorite league to show all the teams in Premier League in 2022. I query some fixture of Manchester City Club, then use one fixture id to find the match game infomation, and see the two teams start lineup players. Then I query the match_statistics and join some dimension table to analyze the match games statistic data, and check my favorite player's statistics. Finally, I query the league_standings table to show this year's standing, rank, and display their results.
+We can find the QueryProjectDataResult.ipynb file I run the query sql in root to analyze the football game information to check result. First I check the every tables row count if all of them have more than 1 million lines of data, then I query my favorite league to show all the teams in Premier League in 2022-2023.
+![alt text](picture/PL_AllTeam.png "2022-2023 Premier League Teams")
+2022-2023 Premier League Teams
+
+ I query some fixture of Manchester City Club, then use one fixture id to find the match game infomation, and see the two teams start lineup players.
+![alt text](picture/ManCity5Fixtures.png "ManCity 5 Fixtures List")
+ManCity 5 Fixtures List
+
+![alt text](picture/OneFixtureInfo.png "ManCity One Fixtures Infomation")
+One Fixture Infomation
+
+![alt text](picture/ManUnitedStarter.png "ManUnited Starter")
+ManUnited Starter in the Fixture
+
+![alt text](picture/ManCityStarter.png "ManCity Starter")
+ManCity Starter in the Fixture
+
+Then I query the match_statistics and join some dimension table to analyze the match games statistic data, and check my favorite player's statistics.
+![alt text](picture/FixtureStatistics.png "Fixture Statistics")
+Fixture Match Statistics
+
+![alt text](picture/ManCityPlayerStatistics.png "Player Statistics")
+Player Infomation and Statistics
+
+ Finally, I query the league_standings table to show this year's standing, rank, and display their results.
+![alt text](picture/PLStanding.png "2022-2023 Premier League Standing")
+2022-2023 Premier League Standing
 #### 5.2 The rationale for the choice of tools and technologies
 * Use the Python language in jupyter notebook to call api to load into S3, because jupyter notebook can run the code step by step and print the result. It is very important for me to understand the data content and allow me to adjust how to fit the S3 json format. I choice to use the football data I am interested, and I think that if I need to build projects at work in the future, I have face every situation, so I tend to call APIs provided by 3 parties, but I really spend most of the time in this phase.
 * Select S3 to store dataset, because I need to use it's copy technologies to load data into table fastlly. Then the choice to use Redshift, not Spark is just the cost consideration, I think I have to rebulid the system with limited time, I have to choose the cheaper cost to build. I hope that I can select Spark to build the sysem in the future .
